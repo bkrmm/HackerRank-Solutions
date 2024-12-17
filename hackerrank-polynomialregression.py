@@ -98,11 +98,6 @@ print("Predictions for test data:")
 for pred in y_test_pred:
     print(f"{pred:.2f}")
 
-# prompt: plot y_test_pred  and accuracy
-
-# Assuming y_test_pred and the accuracy (e.g., R2 score) are already calculated
-# as in your provided code.  Replace 'r2' with your actual accuracy metric variable
-
 plt.figure(figsize=(10, 6))
 plt.plot(y_test_pred, label="Predicted Values")
 plt.xlabel("Data Point Index")
