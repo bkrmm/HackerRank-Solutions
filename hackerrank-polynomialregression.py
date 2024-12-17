@@ -90,3 +90,41 @@ plt.title(f"Predictions for Test Data (R2 Score: {r2:.2f})")
 plt.legend()
 plt.grid(True)
 plt.show()
+
+
+#--------------------------------------------------------------------------------------------------------------------------
+#METHOD 2:
+
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+import numpy as np
+import pandas as pd
+
+F,N=map(int,input().split())
+train_data= []
+for i in range(N):
+    rows=list(map(float,input().split()))
+    train_data.append(rows)
+T = int(input())
+test_data=[list(map(float,input().split())) for _ in range(T)]
+
+X_train=[]
+y_train=[]
+for row in train_data:
+    X_train.append(row[:F]) 
+    y_train.append(row[F]) 
+
+X_train = np.array(X_train) 
+X_test=np.array(test_data)
+#print(X_test)
+
+poly=PolynomialFeatures(degree=3)
+X_train_poly=poly.fit_transform(X_train)
+X_test_poly=poly.transform(X_test)
+
+model=LinearRegression()
+model.fit(X_train_poly,y_train)
+y_pred=model.predict(X_test_poly)
+
+for pred in y_pred:
+    print(pred)
